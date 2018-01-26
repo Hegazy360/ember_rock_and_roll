@@ -28,7 +28,11 @@ export default Route.extend({
     updateRating: function(params) {
       var song = params.item,
         rating = params.rating;
+      if (song.get('rating') === rating) {
+        rating = 0;
+      }
       song.set('rating', rating);
+      return song.save();
     }
   }
 });
